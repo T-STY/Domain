@@ -2,163 +2,351 @@
 <html lang="es-MX">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Soporte - t-sty.mx</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#0a0a0f">
+    <title>Soporte · T_STY: Beyond</title>
+    <link rel="icon" type="image/png" href="../favicon.png"/>
     <style>
         :root {
-            /* Monochrome Palette */
-            --black: #000000;
-            --dark-gray: #333333;
-            --mid-gray: #666666;
-            --light-gray: #e5e5e5;
-            --white: #ffffff;
-            --bg: #f4f4f4;
+            --ink: #0a0a0f;
+            --ink-soft: #1a1a22;
+            --text: #f5f5f7;
+            --text-muted: rgba(245,245,247,0.62);
+            --text-dim: rgba(245,245,247,0.44);
+            --accent: #ffffff;
+            --accent-glow: rgba(255,255,255,0.55);
+            --glass-bg: rgba(255,255,255,0.06);
+            --glass-bg-strong: rgba(255,255,255,0.10);
+            --glass-border: rgba(255,255,255,0.14);
+            --glass-highlight: rgba(255,255,255,0.25);
+            --shadow-soft: 0 10px 40px -10px rgba(0,0,0,0.6), 0 2px 10px -4px rgba(0,0,0,0.4);
+            --shadow-float: 0 30px 80px -20px rgba(0,0,0,0.7), 0 8px 20px -8px rgba(0,0,0,0.5);
+            --radius-lg: 28px;
+            --radius-md: 18px;
+            --radius-sm: 12px;
         }
+
+        * { box-sizing: border-box; }
+        html, body { height: 100%; }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: var(--bg);
-            color: var(--black);
-            line-height: 1.5;
+            color: var(--text);
+            line-height: 1.55;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background: #05050a;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
         }
+
+        /* Ambient color wash — gives the glass something to refract */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: -20%;
+            z-index: -2;
+            background:
+                radial-gradient(50% 40% at 15% 20%, rgba(120, 90, 255, 0.55), transparent 60%),
+                radial-gradient(45% 50% at 85% 15%, rgba(255, 90, 170, 0.45), transparent 60%),
+                radial-gradient(60% 50% at 75% 85%, rgba(90, 200, 255, 0.40), transparent 65%),
+                radial-gradient(40% 40% at 20% 90%, rgba(255, 180, 80, 0.35), transparent 60%),
+                linear-gradient(180deg, #07070d 0%, #0a0a14 100%);
+            filter: saturate(1.15);
+            animation: drift 26s ease-in-out infinite alternate;
+        }
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+            background:
+                radial-gradient(ellipse at top, transparent 40%, rgba(0,0,0,0.35) 100%),
+                url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.06 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+        }
+
+        @keyframes drift {
+            0%   { transform: translate3d(0,0,0) scale(1); }
+            100% { transform: translate3d(-3%, 2%, 0) scale(1.06); }
+        }
+
         .header {
-            background: var(--white);
-            padding: 25px 20px;
+            padding: 56px 24px 20px;
             text-align: center;
-            border-bottom: 1px solid var(--light-gray);
+            position: relative;
         }
         .logo {
-            max-width: 150px;
+            max-width: 76px;
             height: auto;
             display: block;
-            margin: 0 auto 10px;
+            margin: 0 auto 18px;
+            border-radius: 22px;
+            box-shadow: var(--shadow-float);
         }
-        .header-title { font-size: 1rem; color: var(--mid-gray); margin: 0; text-transform: uppercase; letter-spacing: 1px;}
+        .header-eyebrow {
+            font-size: 0.72rem;
+            color: var(--text-dim);
+            margin: 0 0 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.22em;
+            font-weight: 500;
+        }
+        .header-title {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin: 0 0 8px;
+            background: linear-gradient(180deg, #ffffff 0%, rgba(255,255,255,0.65) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .header-sub {
+            color: var(--text-muted);
+            margin: 0;
+            font-size: 0.98rem;
+        }
 
         .container {
-            max-width: 600px;
-            margin: 30px auto;
+            max-width: 640px;
+            margin: 24px auto 48px;
             padding: 0 20px;
         }
 
-        /* Monochrome Card Style */
-        .card {
-            background: var(--white);
-            border: 1px solid var(--light-gray);
-            padding: 25px;
-            margin-bottom: 25px;
-        }
-
-        h2 { 
-            margin-top: 0; 
-            font-size: 1.1rem; 
-            text-transform: uppercase; 
-            letter-spacing: 0.5px;
-            border-bottom: 2px solid var(--black); 
-            padding-bottom: 15px; 
-            margin-bottom: 25px;
-        }
-
-        /* Monochrome FAQ Styling */
-        details {
-            padding: 15px 0;
-            border-bottom: 1px solid var(--light-gray);
-        }
-        summary {
-            font-weight: 600;
-            cursor: pointer;
-            list-style: none;
+        /* Liquid Glass card — the hero component */
+        .glass {
             position: relative;
-            padding-right: 25px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            margin-bottom: 22px;
+            -webkit-backdrop-filter: blur(30px) saturate(180%);
+            backdrop-filter: blur(30px) saturate(180%);
+            box-shadow: var(--shadow-soft),
+                        inset 0 1px 0 0 var(--glass-highlight),
+                        inset 0 -1px 0 0 rgba(0,0,0,0.18);
+            overflow: hidden;
+            isolation: isolate;
+            transition: transform 0.5s cubic-bezier(.2,.9,.25,1), box-shadow 0.5s;
         }
-        summary::-webkit-details-marker { display: none; }
-        summary::after {
-            content: '+'; 
-            position: absolute; 
-            right: 0; 
-            font-size: 1.2rem;
-            font-weight: 300;
+        .glass::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background: linear-gradient(135deg, rgba(255,255,255,0.14) 0%, transparent 35%, transparent 65%, rgba(255,255,255,0.05) 100%);
+            pointer-events: none;
+            z-index: -1;
         }
-        details[open] summary::after { content: '−'; } /* Minus sign */
-        details p { margin: 15px 0 0 0; color: var(--dark-gray); font-size: 0.95rem; }
+        .glass:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-float),
+                        inset 0 1px 0 0 var(--glass-highlight),
+                        inset 0 -1px 0 0 rgba(0,0,0,0.18);
+        }
 
-        /* Monochrome Form Styling */
-        label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 0.85rem; text-transform: uppercase;}
+        h2 {
+            margin: 0 0 6px;
+            font-size: 1.35rem;
+            font-weight: 650;
+            letter-spacing: -0.01em;
+        }
+        .section-lead {
+            font-size: 0.92rem;
+            color: var(--text-muted);
+            margin: 0 0 22px;
+        }
+
+        /* Form */
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 550;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            letter-spacing: 0.02em;
+        }
         input, textarea, select {
             width: 100%;
-            padding: 12px;
-            border: 2px solid var(--light-gray);
-            background: var(--white);
-            color: var(--black);
-            margin-bottom: 20px;
+            padding: 14px 16px;
+            border: 1px solid rgba(255,255,255,0.10);
+            background: rgba(255,255,255,0.04);
+            color: var(--text);
+            margin-bottom: 18px;
             font-size: 16px;
-            box-sizing: border-box;
             font-family: inherit;
-            border-radius: 0; /* Sharper corners */
+            border-radius: var(--radius-sm);
+            transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+        }
+        input::placeholder, textarea::placeholder {
+            color: var(--text-dim);
         }
         input:focus, textarea:focus, select:focus {
             outline: none;
-            border-color: var(--black);
+            border-color: rgba(255,255,255,0.45);
+            background: rgba(255,255,255,0.07);
+            box-shadow: 0 0 0 4px rgba(255,255,255,0.08);
         }
-        
+        select {
+            appearance: none;
+            -webkit-appearance: none;
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path fill='%23f5f5f7' opacity='0.6' d='M6 8 0 0h12z'/></svg>");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            padding-right: 40px;
+        }
+        select option { background: var(--ink-soft); color: var(--text); }
+        textarea { resize: vertical; min-height: 120px; }
+
         .btn-submit {
-            background-color: var(--black);
-            color: var(--white);
+            background: linear-gradient(180deg, rgba(255,255,255,0.95) 0%, rgba(230,230,240,0.85) 100%);
+            color: var(--ink);
             border: none;
             width: 100%;
-            padding: 15px;
-            font-size: 0.9rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            padding: 16px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            letter-spacing: 0.01em;
             cursor: pointer;
-            transition: background 0.2s;
-            border-radius: 0;
+            border-radius: var(--radius-sm);
+            box-shadow: 0 10px 30px -10px rgba(255,255,255,0.35),
+                        inset 0 1px 0 rgba(255,255,255,0.8);
+            transition: transform 0.15s, box-shadow 0.25s, filter 0.2s;
+            font-family: inherit;
         }
-        .btn-submit:hover { background-color: var(--dark-gray); }
+        .btn-submit:hover {
+            filter: brightness(1.05);
+            box-shadow: 0 16px 40px -12px rgba(255,255,255,0.45),
+                        inset 0 1px 0 rgba(255,255,255,0.8);
+        }
+        .btn-submit:active { transform: translateY(1px); }
+
+        /* FAQ */
+        details {
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        details:last-of-type { border-bottom: none; }
+        summary {
+            font-weight: 550;
+            cursor: pointer;
+            list-style: none;
+            position: relative;
+            padding-right: 32px;
+            font-size: 0.98rem;
+        }
+        summary::-webkit-details-marker { display: none; }
+        summary::after {
+            content: "";
+            position: absolute;
+            right: 4px;
+            top: 50%;
+            width: 10px;
+            height: 10px;
+            border-right: 1.5px solid var(--text-muted);
+            border-bottom: 1.5px solid var(--text-muted);
+            transform: translateY(-70%) rotate(45deg);
+            transition: transform 0.3s cubic-bezier(.3,.9,.25,1);
+        }
+        details[open] summary::after { transform: translateY(-30%) rotate(-135deg); }
+        details p { margin: 12px 0 0 0; color: var(--text-muted); font-size: 0.93rem; }
+
+        /* Secondary CTA link card (to account deletion) */
+        .link-card {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            text-decoration: none;
+            color: inherit;
+            padding: 20px 22px;
+            transition: transform 0.3s cubic-bezier(.2,.9,.25,1);
+        }
+        .link-card:hover { transform: translateY(-2px); }
+        .link-card .icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 14px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid var(--glass-border);
+            display: grid;
+            place-items: center;
+            flex-shrink: 0;
+        }
+        .link-card .icon svg { width: 20px; height: 20px; stroke: var(--text); fill: none; stroke-width: 1.8; }
+        .link-card h3 { margin: 0 0 2px; font-size: 0.98rem; font-weight: 600; }
+        .link-card p { margin: 0; font-size: 0.84rem; color: var(--text-muted); }
+        .link-card .chev {
+            margin-left: auto;
+            width: 9px;
+            height: 9px;
+            border-right: 1.5px solid var(--text-dim);
+            border-top: 1.5px solid var(--text-dim);
+            transform: rotate(45deg);
+            flex-shrink: 0;
+        }
 
         .footer {
             text-align: center;
             font-size: 0.8rem;
-            color: var(--mid-gray);
-            padding: 30px;
-            border-top: 1px solid var(--light-gray);
-            margin-top: 40px;
+            color: var(--text-dim);
+            padding: 28px 20px 48px;
         }
-        a { color: var(--black); text-decoration: underline; }
+        .footer a {
+            color: var(--text-muted);
+            text-decoration: none;
+            padding: 0 10px;
+            transition: color 0.2s;
+        }
+        .footer a:hover { color: var(--text); }
+        .footer .sep { opacity: 0.35; }
+
+        @media (max-width: 520px) {
+            .header { padding-top: 40px; }
+            .header-title { font-size: 1.65rem; }
+            .glass { padding: 22px; border-radius: 24px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation: none !important; transition: none !important; }
+        }
     </style>
 </head>
 <body>
 
     <header class="header">
-        <img src="../assets/t_sty.jpg" alt="t-sty logo" class="logo">
-        <p class="header-title">Centro de Soporte</p>
+        <img src="../assets/t_sty.jpg" alt="T_STY logo" class="logo">
+        <p class="header-eyebrow">Centro de Soporte</p>
+        <h1 class="header-title">¿En qué podemos ayudarte?</h1>
+        <p class="header-sub">Envíanos un mensaje y te responderemos pronto.</p>
     </header>
 
-    <div class="container">
+    <main class="container">
 
-        <div class="card">
-            <h2>Enviar Mensaje</h2>
-            <p style="font-size:0.9rem; color:var(--mid-gray); margin-bottom:25px;">
-                Completa el formulario a continuación y nuestro equipo te responderá vía correo electrónico.
-            </p>
+        <section class="glass">
+            <h2>Enviar mensaje</h2>
+            <p class="section-lead">Completa el formulario y nuestro equipo te responderá por correo electrónico.</p>
 
             <form action="https://formspree.io/f/mdalnkde" method="POST">
-                
-                <label for="nombre">Nombre Completo</label>
+                <label for="nombre">Nombre completo</label>
                 <input type="text" id="nombre" name="name" required>
 
-                <label for="email">Correo Electrónico</label>
+                <label for="email">Correo electrónico</label>
                 <input type="email" id="email" name="email" required>
 
-                <label for="order_id">Número de Pedido (Opcional)</label>
+                <label for="order_id">Número de pedido (opcional)</label>
                 <input type="text" id="order_id" name="order_id">
 
                 <label for="topic">Asunto</label>
                 <select id="topic" name="topic">
-                    <option value="Pedido">Problema con un Pedido</option>
-                    <option value="Pago">Problema con Pago</option>
+                    <option value="Pedido">Problema con un pedido</option>
+                    <option value="Pago">Problema con pago</option>
                     <option value="Sugerencia">Sugerencia</option>
                     <option value="Otro">Otro</option>
                 </select>
@@ -166,35 +354,51 @@
                 <label for="message">Detalles</label>
                 <textarea id="message" name="message" rows="5" required></textarea>
 
-                <button type="submit" class="btn-submit">Enviar Ticket</button>
+                <button type="submit" class="btn-submit">Enviar ticket</button>
             </form>
-        </div>
+        </section>
 
-        <div class="card">
-            <h2>Preguntas Frecuentes</h2>
+        <section class="glass">
+            <h2>Preguntas frecuentes</h2>
+            <p class="section-lead">Respuestas rápidas a lo más común.</p>
 
             <details>
                 <summary>¿Dónde entregan?</summary>
-                <p>Actualmente solo entregamos en Andares del Jazmín, Rivera del Jazmín y Lázaro Cárdenas. Esperamos expandirnos en las próximas semanas.</p>
+                <p>Actualmente entregamos en Andares del Jazmín, Rivera del Jazmín y Lázaro Cárdenas. Esperamos expandirnos en las próximas semanas.</p>
             </details>
 
             <details>
                 <summary>¿Qué métodos de pago aceptan?</summary>
-                <p>Aceptamos todas las tarjetas de crédito/débito (Visa, Mastercard, Amex) y pagos en efectivo contra entrega.</p>
+                <p>Aceptamos tarjetas de crédito y débito (Visa, Mastercard, Amex) y pagos en efectivo contra entrega.</p>
             </details>
 
             <details>
                 <summary>¿Cuánto tarda en llegar mi súper?</summary>
                 <p>Nuestros repartidores suelen llegar en menos de 60 minutos. Puedes rastrear tu pedido en tiempo real desde la app.</p>
             </details>
-        </div>
+        </section>
 
-    </div>
+        <a class="glass link-card" href="eliminar-cuenta.html">
+            <span class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 7h16M10 11v6M14 11v6M6 7l1 13a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-13M9 7V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3"/></svg>
+            </span>
+            <div>
+                <h3>Solicitar eliminación de cuenta</h3>
+                <p>Elimina tu cuenta y datos personales de T_STY.</p>
+            </div>
+            <span class="chev" aria-hidden="true"></span>
+        </a>
 
-    <div class="footer">
-        <p><a href="/">Volver a la App</a></p>
-        <p>&copy; 2026 t-sty.mx</p>
-    </div>
+    </main>
+
+    <footer class="footer">
+        <p>
+            <a href="/">Volver a la app</a>
+            <span class="sep">·</span>
+            <a href="eliminar-cuenta.html">Eliminar cuenta</a>
+        </p>
+        <p>&copy; 2026 t-sty.mx · T_STY: Beyond</p>
+    </footer>
 
 </body>
 </html>

@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#0a0a0f">
+    <title>Eliminar cuenta · T_STY: Beyond</title>
+    <link rel="icon" type="image/png" href="../favicon.png"/>
+    <style>
+        :root {
+            --ink: #0a0a0f;
+            --ink-soft: #1a1a22;
+            --text: #f5f5f7;
+            --text-muted: rgba(245,245,247,0.62);
+            --text-dim: rgba(245,245,247,0.44);
+            --danger: #ff6b6b;
+            --danger-soft: rgba(255,107,107,0.18);
+            --glass-bg: rgba(255,255,255,0.06);
+            --glass-border: rgba(255,255,255,0.14);
+            --glass-highlight: rgba(255,255,255,0.25);
+            --shadow-soft: 0 10px 40px -10px rgba(0,0,0,0.6), 0 2px 10px -4px rgba(0,0,0,0.4);
+            --shadow-float: 0 30px 80px -20px rgba(0,0,0,0.7), 0 8px 20px -8px rgba(0,0,0,0.5);
+            --radius-lg: 28px;
+            --radius-md: 18px;
+            --radius-sm: 12px;
+        }
+
+        * { box-sizing: border-box; }
+        html, body { height: 100%; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--text);
+            line-height: 1.55;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background: #05050a;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: -20%;
+            z-index: -2;
+            background:
+                radial-gradient(50% 40% at 15% 20%, rgba(120, 90, 255, 0.55), transparent 60%),
+                radial-gradient(45% 50% at 85% 15%, rgba(255, 90, 170, 0.45), transparent 60%),
+                radial-gradient(60% 50% at 75% 85%, rgba(90, 200, 255, 0.40), transparent 65%),
+                radial-gradient(40% 40% at 20% 90%, rgba(255, 180, 80, 0.35), transparent 60%),
+                linear-gradient(180deg, #07070d 0%, #0a0a14 100%);
+            filter: saturate(1.15);
+            animation: drift 26s ease-in-out infinite alternate;
+        }
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+            background:
+                radial-gradient(ellipse at top, transparent 40%, rgba(0,0,0,0.35) 100%),
+                url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.06 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+        }
+
+        @keyframes drift {
+            0%   { transform: translate3d(0,0,0) scale(1); }
+            100% { transform: translate3d(-3%, 2%, 0) scale(1.06); }
+        }
+
+        .topbar {
+            padding: 24px 22px 0;
+            max-width: 640px;
+            margin: 0 auto;
+        }
+        .back {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.92rem;
+            padding: 8px 14px 8px 10px;
+            border-radius: 999px;
+            border: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            backdrop-filter: blur(20px) saturate(180%);
+            transition: background 0.2s, color 0.2s;
+        }
+        .back:hover { background: rgba(255,255,255,0.10); color: var(--text); }
+        .back::before {
+            content: "";
+            width: 8px; height: 8px;
+            border-left: 1.5px solid currentColor;
+            border-bottom: 1.5px solid currentColor;
+            transform: rotate(45deg);
+            margin-right: 2px;
+        }
+
+        .header {
+            padding: 32px 24px 12px;
+            text-align: center;
+        }
+        .danger-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 7px 14px;
+            border-radius: 999px;
+            background: var(--danger-soft);
+            border: 1px solid rgba(255,107,107,0.35);
+            color: #ffb4b4;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 18px;
+        }
+        .danger-badge svg { width: 14px; height: 14px; fill: currentColor; }
+        .header-title {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin: 0 0 8px;
+            background: linear-gradient(180deg, #ffffff 0%, rgba(255,255,255,0.65) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .header-sub {
+            color: var(--text-muted);
+            margin: 0 auto;
+            max-width: 460px;
+            font-size: 0.98rem;
+        }
+
+        .container {
+            max-width: 640px;
+            margin: 20px auto 48px;
+            padding: 0 20px;
+        }
+
+        .glass {
+            position: relative;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            margin-bottom: 22px;
+            -webkit-backdrop-filter: blur(30px) saturate(180%);
+            backdrop-filter: blur(30px) saturate(180%);
+            box-shadow: var(--shadow-soft),
+                        inset 0 1px 0 0 var(--glass-highlight),
+                        inset 0 -1px 0 0 rgba(0,0,0,0.18);
+            overflow: hidden;
+            isolation: isolate;
+        }
+        .glass::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background: linear-gradient(135deg, rgba(255,255,255,0.14) 0%, transparent 35%, transparent 65%, rgba(255,255,255,0.05) 100%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        h2 {
+            margin: 0 0 6px;
+            font-size: 1.25rem;
+            font-weight: 650;
+            letter-spacing: -0.01em;
+        }
+        .section-lead {
+            font-size: 0.92rem;
+            color: var(--text-muted);
+            margin: 0 0 20px;
+        }
+
+        .info-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .info-list li {
+            display: flex;
+            gap: 14px;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            font-size: 0.94rem;
+            color: var(--text-muted);
+        }
+        .info-list li:last-child { border-bottom: none; }
+        .info-list .dot {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid var(--glass-border);
+            flex-shrink: 0;
+            display: grid;
+            place-items: center;
+            margin-top: 1px;
+        }
+        .info-list .dot svg { width: 12px; height: 12px; stroke: var(--text); fill: none; stroke-width: 2; }
+        .info-list strong { color: var(--text); font-weight: 600; }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 550;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            letter-spacing: 0.02em;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid rgba(255,255,255,0.10);
+            background: rgba(255,255,255,0.04);
+            color: var(--text);
+            margin-bottom: 18px;
+            font-size: 16px;
+            font-family: inherit;
+            border-radius: var(--radius-sm);
+            transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+        }
+        input::placeholder, textarea::placeholder { color: var(--text-dim); }
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: rgba(255,255,255,0.45);
+            background: rgba(255,255,255,0.07);
+            box-shadow: 0 0 0 4px rgba(255,255,255,0.08);
+        }
+        select {
+            appearance: none;
+            -webkit-appearance: none;
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path fill='%23f5f5f7' opacity='0.6' d='M6 8 0 0h12z'/></svg>");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            padding-right: 40px;
+        }
+        select option { background: var(--ink-soft); color: var(--text); }
+        textarea { resize: vertical; min-height: 100px; }
+
+        .confirm-row {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            padding: 14px 16px;
+            border-radius: var(--radius-sm);
+            background: rgba(255,107,107,0.08);
+            border: 1px solid rgba(255,107,107,0.22);
+            margin-bottom: 22px;
+        }
+        .confirm-row input[type="checkbox"] {
+            width: 20px; height: 20px;
+            margin: 2px 0 0;
+            accent-color: #ff6b6b;
+            flex-shrink: 0;
+        }
+        .confirm-row label {
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--text);
+            font-weight: 500;
+            letter-spacing: 0;
+            text-transform: none;
+            cursor: pointer;
+        }
+
+        .btn-danger {
+            background: linear-gradient(180deg, #ff6b6b 0%, #e04848 100%);
+            color: #fff;
+            border: none;
+            width: 100%;
+            padding: 16px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            letter-spacing: 0.01em;
+            cursor: pointer;
+            border-radius: var(--radius-sm);
+            box-shadow: 0 10px 30px -10px rgba(255,107,107,0.55),
+                        inset 0 1px 0 rgba(255,255,255,0.35);
+            transition: transform 0.15s, filter 0.2s, box-shadow 0.25s;
+            font-family: inherit;
+        }
+        .btn-danger:hover { filter: brightness(1.08); box-shadow: 0 16px 40px -12px rgba(255,107,107,0.7), inset 0 1px 0 rgba(255,255,255,0.35); }
+        .btn-danger:active { transform: translateY(1px); }
+        .btn-danger:disabled { filter: grayscale(0.4) brightness(0.7); cursor: not-allowed; box-shadow: none; }
+
+        .footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            padding: 20px 20px 48px;
+        }
+        .footer a {
+            color: var(--text-muted);
+            text-decoration: none;
+            padding: 0 10px;
+            transition: color 0.2s;
+        }
+        .footer a:hover { color: var(--text); }
+        .footer .sep { opacity: 0.35; }
+
+        @media (max-width: 520px) {
+            .header { padding-top: 24px; }
+            .header-title { font-size: 1.65rem; }
+            .glass { padding: 22px; border-radius: 24px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation: none !important; transition: none !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="topbar">
+        <a class="back" href="index.html">Volver a soporte</a>
+    </div>
+
+    <header class="header">
+        <span class="danger-badge">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 1 21h22L12 2zm0 7 6 10H6l6-10zm-1 3v4h2v-4h-2zm0 5v2h2v-2h-2z"/></svg>
+            Acción irreversible
+        </span>
+        <h1 class="header-title">Solicitar eliminación de cuenta</h1>
+        <p class="header-sub">Procesaremos tu solicitud en un plazo máximo de 30 días y te confirmaremos por correo cuando se complete.</p>
+    </header>
+
+    <main class="container">
+
+        <section class="glass">
+            <h2>Qué se elimina</h2>
+            <p class="section-lead">Al confirmar tu solicitud, lo siguiente será removido de nuestros sistemas:</p>
+            <ul class="info-list">
+                <li>
+                    <span class="dot"><svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12l5 5L20 7"/></svg></span>
+                    <span><strong>Datos de perfil</strong> — nombre, correo, teléfono, dirección y foto.</span>
+                </li>
+                <li>
+                    <span class="dot"><svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12l5 5L20 7"/></svg></span>
+                    <span><strong>Historial de pedidos</strong> y preferencias guardadas.</span>
+                </li>
+                <li>
+                    <span class="dot"><svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12l5 5L20 7"/></svg></span>
+                    <span><strong>Métodos de pago</strong> vinculados a tu cuenta.</span>
+                </li>
+                <li>
+                    <span class="dot"><svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12l5 5L20 7"/></svg></span>
+                    <span><strong>Datos de autenticación</strong> y sesiones activas.</span>
+                </li>
+            </ul>
+            <p class="section-lead" style="margin-top:20px; margin-bottom:0;">
+                Nota: podemos retener ciertos registros de transacciones por obligaciones fiscales o legales durante el plazo requerido por la ley.
+            </p>
+        </section>
+
+        <section class="glass">
+            <h2>Completar solicitud</h2>
+            <p class="section-lead">Verifica tu identidad con el correo asociado a tu cuenta.</p>
+
+            <form action="https://formspree.io/f/mdalnkde" method="POST" id="deleteForm">
+                <input type="hidden" name="form_type" value="account_deletion_request">
+                <input type="hidden" name="_subject" value="Solicitud de eliminación de cuenta - T_STY">
+
+                <label for="email">Correo electrónico de la cuenta</label>
+                <input type="email" id="email" name="email" placeholder="tu@correo.com" required>
+
+                <label for="nombre">Nombre completo</label>
+                <input type="text" id="nombre" name="name" required>
+
+                <label for="reason">Motivo (opcional)</label>
+                <select id="reason" name="reason">
+                    <option value="">Selecciona un motivo…</option>
+                    <option value="No uso la app">Ya no uso la app</option>
+                    <option value="Privacidad">Preocupaciones de privacidad</option>
+                    <option value="Cuenta duplicada">Tengo una cuenta duplicada</option>
+                    <option value="Mala experiencia">Mala experiencia con el servicio</option>
+                    <option value="Otro">Otro</option>
+                </select>
+
+                <label for="comments">Comentarios adicionales (opcional)</label>
+                <textarea id="comments" name="comments" rows="4" placeholder="Cuéntanos si hay algo que podamos hacer mejor."></textarea>
+
+                <div class="confirm-row">
+                    <input type="checkbox" id="confirm" name="confirm" required>
+                    <label for="confirm">
+                        Entiendo que esta acción es permanente y que se eliminarán todos los datos de mi cuenta.
+                    </label>
+                </div>
+
+                <button type="submit" class="btn-danger" id="submitBtn" disabled>Enviar solicitud</button>
+            </form>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <p>
+            <a href="index.html">Soporte</a>
+            <span class="sep">·</span>
+            <a href="/">Volver a la app</a>
+        </p>
+        <p>&copy; 2026 t-sty.mx · T_STY: Beyond</p>
+    </footer>
+
+    <script>
+        const confirmBox = document.getElementById('confirm');
+        const submitBtn = document.getElementById('submitBtn');
+        confirmBox.addEventListener('change', () => {
+            submitBtn.disabled = !confirmBox.checked;
+        });
+    </script>
+
+</body>
+</html>

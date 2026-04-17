@@ -43,3 +43,6 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Firebase generated (contains API keys — keep local, regenerate via `flutterfire configure`)
+lib/firebase_options.dart
