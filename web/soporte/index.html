@@ -86,13 +86,26 @@
             text-align: center;
             position: relative;
         }
-        .logo {
-            max-width: 82px;
-            height: auto;
+        .logo-mark {
+            font-size: 2.4rem;
+            margin: 0 auto 22px;
+            color: var(--ink);
+            line-height: 1;
+            display: inline-block;
+        }
+        .logo-mark .wordmark {
+            font-size: 1em;
+            letter-spacing: 0.06em;
+        }
+        .logo-mark .beyond {
             display: block;
-            margin: 0 auto 18px;
-            border-radius: 20px;
-            box-shadow: var(--shadow-soft);
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+            font-size: 0.34em;
+            font-weight: 500;
+            color: var(--text-muted);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-top: 6px;
         }
         .header-eyebrow {
             font-size: 0.72rem;
@@ -327,7 +340,10 @@
 <body>
 
     <header class="header">
-        <img src="../assets/t_sty.jpg" alt="T_STY logo" class="logo">
+        <div class="logo-mark">
+            <span class="wordmark">T_STY</span>
+            <span class="beyond">Beyond</span>
+        </div>
         <p class="header-eyebrow">Centro de Soporte</p>
         <h1 class="header-title">¿En qué podemos ayudarte?</h1>
         <p class="header-sub">Envíanos un mensaje y te responderemos pronto.</p>
