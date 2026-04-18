@@ -108,7 +108,6 @@
             text-decoration: none; color: var(--text);
             font-weight: 600; letter-spacing: -0.01em;
         }
-        .brand img { width: 28px; height: 28px; border-radius: 8px; object-fit: cover; }
         .brand small { font-weight: 500; color: var(--text-muted); font-size: 0.78rem; }
         .nav-links { display: flex; gap: 4px; align-items: center; }
         .nav-links a {
@@ -349,9 +348,11 @@
             border: 1px solid var(--glass-border);
         }
         .feature .icon.a { background: linear-gradient(135deg, rgba(196,181,253,0.45), rgba(249,168,212,0.35)); }
-        .feature .icon.b { background: linear-gradient(135deg, rgba(125,211,252,0.45), rgba(167,139,250,0.35)); }
+        .feature .icon.b { background: linear-gradient(135deg, rgba(134,239,172,0.5), rgba(94,234,212,0.35)); }
         .feature .icon.c { background: linear-gradient(135deg, rgba(253,224,71,0.5), rgba(251,146,60,0.35)); }
-        .feature .icon.d { background: linear-gradient(135deg, rgba(134,239,172,0.5), rgba(94,234,212,0.35)); }
+        .feature .icon.d { background: linear-gradient(135deg, rgba(251,113,133,0.45), rgba(249,168,212,0.35)); }
+        .feature .icon.e { background: linear-gradient(135deg, rgba(167,139,250,0.45), rgba(125,211,252,0.35)); }
+        .feature .icon.f { background: linear-gradient(135deg, rgba(94,234,212,0.5), rgba(253,224,71,0.35)); }
         .feature .icon svg { width: 22px; height: 22px; stroke: var(--ink); fill: none; stroke-width: 1.8; }
         .feature h3 { margin: 0 0 8px; font-size: 1.1rem; font-weight: 600; letter-spacing: -0.01em; color: var(--ink); }
         .feature p { margin: 0; color: var(--text-muted); font-size: 0.94rem; }
@@ -423,7 +424,6 @@
     <nav class="top">
         <div class="nav-inner">
             <a class="brand" href="/">
-                <img src="assets/t_sty.jpg" alt="T_STY logo">
                 <span>T_STY <small>· Beyond</small></span>
             </a>
             <div class="nav-links">
@@ -490,26 +490,42 @@
 
             <article class="feature">
                 <div class="icon b">
-                    <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 22s-8-4.5-8-11.5S12 2 12 2s8 1 8 8.5S12 22 12 22z"/><circle cx="12" cy="10" r="3" stroke-width="1.8"/></svg>
+                    <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 7h13l3 4v6h-2a2 2 0 1 1-4 0H9a2 2 0 1 1-4 0H3V7zM16 11h3"/></svg>
                 </div>
-                <h3>Rastreo en tiempo real</h3>
-                <p>Mira exactamente dónde va tu pedido, minuto a minuto.</p>
+                <h3>Pago contra entrega</h3>
+                <p>Paga solo cuando recibes tu pedido. Sin riesgos, sin datos de tarjeta.</p>
             </article>
 
             <article class="feature">
                 <div class="icon c">
-                    <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7H4a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM2 11h20M6 15h4"/></svg>
-                </div>
-                <h3>Pago seguro</h3>
-                <p>Tarjetas, efectivo contra entrega y pagos protegidos en la app.</p>
-            </article>
-
-            <article class="feature">
-                <div class="icon d">
                     <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/><circle cx="12" cy="12" r="4" stroke-width="1.8"/></svg>
                 </div>
                 <h3>Frescura garantizada</h3>
                 <p>Productos frescos, seleccionados cada mañana. O te devolvemos tu dinero.</p>
+            </article>
+
+            <article class="feature">
+                <div class="icon d">
+                    <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 3h12l-1.5 4.5a4.5 4.5 0 0 1-9 0L6 3zM9 13v8M15 13v8M8 21h8"/></svg>
+                </div>
+                <h3>Recetas con un toque</h3>
+                <p>Descubre recetas dentro de la app y agrega todos los ingredientes al carrito con un solo botón.</p>
+            </article>
+
+            <article class="feature">
+                <div class="icon e">
+                    <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 10h10M9 8v4M17 8v4M5 7a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v6a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4V7z"/><circle cx="15" cy="10" r="0.8" fill="currentColor" stroke="none"/></svg>
+                </div>
+                <h3>Juegos y recompensas</h3>
+                <p>Encuentra los mini-juegos ocultos en la app, acumula puntos y cámbialos por productos en tienda.</p>
+            </article>
+
+            <article class="feature">
+                <div class="icon f">
+                    <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2a2 2 0 0 0 0-4V8zM9 9l6 6M9.5 10a0.5 0.5 0 1 1 0-1 0.5 0.5 0 0 1 0 1zM14.5 15a0.5 0.5 0 1 1 0-1 0.5 0.5 0 0 1 0 1z"/></svg>
+                </div>
+                <h3>Cupones exclusivos</h3>
+                <p>Descuentos disponibles solo dentro de la app. Ahorra más cada vez que compras.</p>
             </article>
         </div>
     </section>
