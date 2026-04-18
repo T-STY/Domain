@@ -53,19 +53,23 @@
         html { scroll-behavior: smooth; }
         section[id] { scroll-margin-top: 90px; }
 
-        /* Page in/out transitions */
+        /* Page in/out transitions. Use animation-fill-mode: backwards on
+           page-in so body reverts to no transform/filter after the
+           animation — otherwise a lingering transform turns body into
+           the containing block for fixed descendants (the background
+           gradient and the modal backdrop), breaking both on scroll. */
         body {
-            animation: page-in 0.45s cubic-bezier(.2,.9,.25,1) both;
+            animation: page-in 0.45s cubic-bezier(.2,.9,.25,1) backwards;
         }
         body.page-leaving {
             animation: page-out 0.3s cubic-bezier(.4,0,.6,1) forwards;
         }
         @keyframes page-in {
-            from { opacity: 0; transform: translateY(10px); filter: blur(6px); }
-            to   { opacity: 1; transform: translateY(0);    filter: blur(0); }
+            from { opacity: 0; transform: translateY(10px); }
+            to   { opacity: 1; transform: translateY(0);    }
         }
         @keyframes page-out {
-            to { opacity: 0; transform: translateY(-6px); filter: blur(4px); }
+            to { opacity: 0; transform: translateY(-6px); }
         }
 
         body {
