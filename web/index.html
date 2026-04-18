@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="theme-color" content="#0a0a0f">
+    <meta name="theme-color" content="#ffffff">
     <title>T_STY: Beyond — Tu súper en minutos</title>
     <meta name="description" content="T_STY: Beyond es tu súper a domicilio en minutos. Frutas, verduras y esenciales entregados desde la app.">
     <meta property="og:title" content="T_STY: Beyond">
@@ -14,14 +14,23 @@
     <style>
         :root {
             --ink: #0a0a0f;
-            --text: #f5f5f7;
-            --text-muted: rgba(245,245,247,0.65);
-            --text-dim: rgba(245,245,247,0.44);
-            --glass-bg: rgba(255,255,255,0.06);
-            --glass-border: rgba(255,255,255,0.14);
-            --glass-highlight: rgba(255,255,255,0.25);
-            --shadow-soft: 0 10px 40px -10px rgba(0,0,0,0.6), 0 2px 10px -4px rgba(0,0,0,0.4);
-            --shadow-float: 0 30px 80px -20px rgba(0,0,0,0.7), 0 8px 20px -8px rgba(0,0,0,0.5);
+            --ink-2: #1a1a22;
+            --text: #0a0a0f;
+            --text-muted: rgba(10,10,15,0.62);
+            --text-dim: rgba(10,10,15,0.44);
+            --bg: #ffffff;
+            --surface: #ffffff;
+            --surface-soft: #f7f7f8;
+            --glass-bg: rgba(255,255,255,0.62);
+            --glass-border: rgba(10,10,15,0.08);
+            --glass-highlight: rgba(255,255,255,0.9);
+            --line: rgba(10,10,15,0.08);
+            --shadow-soft: 0 10px 30px -12px rgba(10,10,15,0.12), 0 2px 6px -2px rgba(10,10,15,0.06);
+            --shadow-float: 0 24px 60px -18px rgba(10,10,15,0.22), 0 6px 16px -6px rgba(10,10,15,0.10);
+            --shadow-phone: 0 40px 80px -20px rgba(10,10,15,0.28), 0 12px 30px -10px rgba(10,10,15,0.14);
+            --accent-a: #c4b5fd;
+            --accent-b: #f9a8d4;
+            --accent-c: #fcd34d;
             --radius-lg: 28px;
             --radius-md: 18px;
             --radius-sm: 12px;
@@ -38,25 +47,26 @@
             line-height: 1.55;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            background: #05050a;
+            background: var(--bg);
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
         }
 
+        /* Pastel ambient wash — soft colour behind glass */
         body::before {
             content: "";
             position: fixed;
             inset: -20%;
             z-index: -2;
             background:
-                radial-gradient(50% 40% at 15% 20%, rgba(120, 90, 255, 0.55), transparent 60%),
-                radial-gradient(45% 50% at 85% 15%, rgba(255, 90, 170, 0.45), transparent 60%),
-                radial-gradient(60% 50% at 75% 85%, rgba(90, 200, 255, 0.40), transparent 65%),
-                radial-gradient(40% 40% at 20% 90%, rgba(255, 180, 80, 0.35), transparent 60%),
-                linear-gradient(180deg, #07070d 0%, #0a0a14 100%);
-            filter: saturate(1.15);
-            animation: drift 26s ease-in-out infinite alternate;
+                radial-gradient(50% 40% at 15% 15%, rgba(196,181,253,0.35), transparent 60%),
+                radial-gradient(45% 50% at 85% 12%, rgba(249,168,212,0.28), transparent 60%),
+                radial-gradient(60% 50% at 78% 82%, rgba(125,211,252,0.28), transparent 65%),
+                radial-gradient(40% 40% at 18% 92%, rgba(253,224,71,0.22), transparent 60%),
+                linear-gradient(180deg, #ffffff 0%, #fafafc 100%);
+            filter: saturate(1.05);
+            animation: drift 28s ease-in-out infinite alternate;
         }
         body::after {
             content: "";
@@ -64,14 +74,12 @@
             inset: 0;
             z-index: -1;
             pointer-events: none;
-            background:
-                radial-gradient(ellipse at top, transparent 40%, rgba(0,0,0,0.35) 100%),
-                url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.06 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+            background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.035 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
         }
 
         @keyframes drift {
             0%   { transform: translate3d(0,0,0) scale(1); }
-            100% { transform: translate3d(-3%, 2%, 0) scale(1.06); }
+            100% { transform: translate3d(-2%, 2%, 0) scale(1.05); }
         }
 
         /* Nav */
@@ -100,8 +108,7 @@
             text-decoration: none; color: var(--text);
             font-weight: 600; letter-spacing: -0.01em;
         }
-        .brand img { width: 28px; height: 28px; }
-        .brand-logo { mix-blend-mode: screen; filter: invert(1) contrast(1.05); }
+        .brand img { width: 28px; height: 28px; border-radius: 8px; object-fit: cover; }
         .brand small { font-weight: 500; color: var(--text-muted); font-size: 0.78rem; }
         .nav-links { display: flex; gap: 4px; align-items: center; }
         .nav-links a {
@@ -112,20 +119,20 @@
             border-radius: 999px;
             transition: background 0.2s, color 0.2s;
         }
-        .nav-links a:hover { background: rgba(255,255,255,0.08); color: var(--text); }
+        .nav-links a:hover { background: rgba(10,10,15,0.06); color: var(--text); }
         .nav-cta {
-            background: #fff !important;
-            color: var(--ink) !important;
+            background: var(--ink) !important;
+            color: #fff !important;
             font-weight: 600;
             padding: 8px 16px !important;
         }
-        .nav-cta:hover { background: #eaeaea !important; }
+        .nav-cta:hover { background: #1f1f29 !important; }
 
         /* Hero */
         .hero {
             max-width: 980px;
             margin: 0 auto;
-            padding: 80px 24px 40px;
+            padding: 72px 24px 28px;
             text-align: center;
         }
         .eyebrow {
@@ -147,13 +154,13 @@
         }
         .eyebrow .pulse {
             width: 7px; height: 7px; border-radius: 50%;
-            background: #4ade80;
-            box-shadow: 0 0 10px #4ade80;
+            background: #10b981;
+            box-shadow: 0 0 10px rgba(16,185,129,0.6);
             animation: pulse 2s ease-in-out infinite;
         }
         @keyframes pulse {
             0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.6; transform: scale(0.85); }
+            50% { opacity: 0.55; transform: scale(0.85); }
         }
         .hero h1 {
             font-size: clamp(2.4rem, 7vw, 4.5rem);
@@ -161,13 +168,10 @@
             letter-spacing: -0.035em;
             line-height: 1.02;
             margin: 0 0 20px;
-            background: linear-gradient(180deg, #ffffff 0%, rgba(255,255,255,0.55) 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+            color: var(--ink);
         }
         .hero h1 .accent {
-            background: linear-gradient(135deg, #c4b5fd 0%, #f9a8d4 50%, #fcd34d 100%);
+            background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 50%, #f59e0b 100%);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -191,23 +195,23 @@
             align-items: center;
             gap: 12px;
             padding: 12px 22px;
-            background: #000;
+            background: var(--ink);
             color: #fff;
             border-radius: 14px;
             text-decoration: none;
-            border: 1px solid rgba(255,255,255,0.14);
-            box-shadow: var(--shadow-soft), inset 0 1px 0 rgba(255,255,255,0.08);
+            border: 1px solid var(--ink);
+            box-shadow: var(--shadow-soft);
             transition: transform 0.2s, box-shadow 0.3s, background 0.3s;
             min-width: 190px;
         }
         .store-btn:hover {
             transform: translateY(-2px);
-            background: #111;
-            box-shadow: var(--shadow-float), inset 0 1px 0 rgba(255,255,255,0.12);
+            background: #1f1f29;
+            box-shadow: var(--shadow-float);
         }
         .store-btn svg { width: 28px; height: 28px; flex-shrink: 0; }
         .store-btn .label { display: flex; flex-direction: column; align-items: flex-start; line-height: 1.1; }
-        .store-btn .label .small { font-size: 0.68rem; color: rgba(255,255,255,0.7); font-weight: 400; }
+        .store-btn .label .small { font-size: 0.68rem; color: rgba(255,255,255,0.72); font-weight: 400; }
         .store-btn .label .big { font-size: 1.05rem; font-weight: 600; letter-spacing: -0.01em; }
 
         .hero-meta {
@@ -217,80 +221,76 @@
             color: var(--text-dim);
             font-size: 0.85rem;
         }
-        .hero-meta .stars { color: #fcd34d; letter-spacing: 1px; }
+        .hero-meta .stars { color: #f59e0b; letter-spacing: 1px; }
 
-        /* Phone mock / showcase */
+        /* Phone mock with real screenshot */
         .showcase {
             max-width: 980px;
-            margin: 40px auto 0;
-            padding: 0 24px;
+            margin: 32px auto 0;
+            padding: 0 24px 8px;
             display: grid;
             place-items: center;
         }
         .phone {
-            width: min(280px, 70vw);
-            aspect-ratio: 9 / 18.5;
-            border-radius: 46px;
-            padding: 10px;
-            background: linear-gradient(160deg, rgba(255,255,255,0.22), rgba(255,255,255,0.04));
-            border: 1px solid var(--glass-border);
-            box-shadow: var(--shadow-float), inset 0 1px 0 var(--glass-highlight);
-            -webkit-backdrop-filter: blur(30px);
-            backdrop-filter: blur(30px);
+            width: min(300px, 72vw);
+            aspect-ratio: 9 / 19.5;
+            border-radius: 44px;
+            padding: 8px;
+            background: linear-gradient(160deg, #1a1a22 0%, #0a0a0f 60%, #1a1a22 100%);
+            border: 1px solid rgba(10,10,15,0.2);
+            box-shadow: var(--shadow-phone);
             position: relative;
             transform: rotate(-3deg);
             transition: transform 0.6s cubic-bezier(.2,.9,.25,1);
         }
         .phone:hover { transform: rotate(0deg) translateY(-4px); }
-        .phone-screen {
-            width: 100%; height: 100%;
-            border-radius: 38px;
-            background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            padding: 38px 16px 16px;
-        }
-        .phone-screen::before {
+        .phone::before {
+            /* side button silver accent */
             content: "";
             position: absolute;
-            top: 14px; left: 50%;
+            top: 110px;
+            right: -2px;
+            width: 4px;
+            height: 60px;
+            background: linear-gradient(180deg, #3a3a45, #2a2a32);
+            border-radius: 2px 0 0 2px;
+        }
+        .phone-screen {
+            width: 100%; height: 100%;
+            border-radius: 36px;
+            overflow: hidden;
+            position: relative;
+            background: #ffffff;
+        }
+        .phone-screen img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .phone-notch {
+            position: absolute;
+            top: 12px;
+            left: 50%;
             transform: translateX(-50%);
-            width: 90px; height: 24px;
-            background: #000;
-            border-radius: 14px;
+            width: 100px;
+            height: 26px;
+            background: #0a0a0f;
+            border-radius: 16px;
+            z-index: 2;
         }
-        .phone-logo {
-            font-size: 0.72rem;
-            color: var(--text-muted);
+        /* Fallback visible if screenshot missing */
+        .phone-fallback {
+            position: absolute;
+            inset: 0;
+            display: grid;
+            place-items: center;
+            padding: 40px 20px;
             text-align: center;
-            letter-spacing: 0.25em;
-            text-transform: uppercase;
-            margin-bottom: 14px;
+            color: var(--text-muted);
+            font-size: 0.82rem;
+            background: linear-gradient(180deg, #fafafc, #f0f0f3);
         }
-        .phone-card {
-            background: rgba(255,255,255,0.06);
-            border: 1px solid rgba(255,255,255,0.10);
-            border-radius: 14px;
-            padding: 10px 12px;
-            margin-bottom: 8px;
-            -webkit-backdrop-filter: blur(10px);
-            backdrop-filter: blur(10px);
-        }
-        .phone-card .row { display: flex; align-items: center; gap: 10px; }
-        .phone-card .thumb {
-            width: 36px; height: 36px; border-radius: 10px;
-            background: linear-gradient(135deg, #c4b5fd, #f9a8d4);
-            flex-shrink: 0;
-        }
-        .phone-card .thumb.v2 { background: linear-gradient(135deg, #fcd34d, #fb923c); }
-        .phone-card .thumb.v3 { background: linear-gradient(135deg, #60a5fa, #a78bfa); }
-        .phone-card .thumb.v4 { background: linear-gradient(135deg, #4ade80, #2dd4bf); }
-        .phone-card .meta { flex: 1; min-width: 0; }
-        .phone-card .title { font-size: 0.72rem; font-weight: 600; color: var(--text); margin: 0 0 2px; }
-        .phone-card .sub { font-size: 0.62rem; color: var(--text-muted); margin: 0; }
-        .phone-card .price { font-size: 0.72rem; font-weight: 600; color: var(--text); }
 
         /* Features */
         .features {
@@ -304,10 +304,7 @@
             font-weight: 700;
             letter-spacing: -0.02em;
             margin: 0 0 12px;
-            background: linear-gradient(180deg, #ffffff 0%, rgba(255,255,255,0.55) 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+            color: var(--ink);
         }
         .section-sub {
             text-align: center;
@@ -337,7 +334,7 @@
             content: "";
             position: absolute; inset: 0;
             border-radius: inherit;
-            background: linear-gradient(135deg, rgba(255,255,255,0.14) 0%, transparent 40%);
+            background: linear-gradient(135deg, rgba(255,255,255,0.5) 0%, transparent 40%);
             pointer-events: none; z-index: -1;
         }
         .feature:hover {
@@ -351,12 +348,12 @@
             margin-bottom: 18px;
             border: 1px solid var(--glass-border);
         }
-        .feature .icon.a { background: linear-gradient(135deg, rgba(196,181,253,0.3), rgba(249,168,212,0.2)); }
-        .feature .icon.b { background: linear-gradient(135deg, rgba(96,165,250,0.3), rgba(167,139,250,0.2)); }
-        .feature .icon.c { background: linear-gradient(135deg, rgba(252,211,77,0.3), rgba(251,146,60,0.2)); }
-        .feature .icon.d { background: linear-gradient(135deg, rgba(74,222,128,0.3), rgba(45,212,191,0.2)); }
-        .feature .icon svg { width: 22px; height: 22px; stroke: var(--text); fill: none; stroke-width: 1.8; }
-        .feature h3 { margin: 0 0 8px; font-size: 1.1rem; font-weight: 600; letter-spacing: -0.01em; }
+        .feature .icon.a { background: linear-gradient(135deg, rgba(196,181,253,0.45), rgba(249,168,212,0.35)); }
+        .feature .icon.b { background: linear-gradient(135deg, rgba(125,211,252,0.45), rgba(167,139,250,0.35)); }
+        .feature .icon.c { background: linear-gradient(135deg, rgba(253,224,71,0.5), rgba(251,146,60,0.35)); }
+        .feature .icon.d { background: linear-gradient(135deg, rgba(134,239,172,0.5), rgba(94,234,212,0.35)); }
+        .feature .icon svg { width: 22px; height: 22px; stroke: var(--ink); fill: none; stroke-width: 1.8; }
+        .feature h3 { margin: 0 0 8px; font-size: 1.1rem; font-weight: 600; letter-spacing: -0.01em; color: var(--ink); }
         .feature p { margin: 0; color: var(--text-muted); font-size: 0.94rem; }
 
         /* CTA band */
@@ -381,7 +378,7 @@
         .cta-inner::before {
             content: "";
             position: absolute; inset: 0;
-            background: radial-gradient(60% 80% at 50% 0%, rgba(196,181,253,0.2), transparent 70%);
+            background: radial-gradient(60% 80% at 50% 0%, rgba(196,181,253,0.25), transparent 70%);
             z-index: -1;
         }
         .cta-inner h2 {
@@ -389,6 +386,7 @@
             font-weight: 700;
             letter-spacing: -0.02em;
             margin: 0 0 12px;
+            color: var(--ink);
         }
         .cta-inner p { color: var(--text-muted); margin: 0 0 28px; }
 
@@ -397,7 +395,7 @@
             max-width: 980px;
             margin: 40px auto 0;
             padding: 32px 24px 48px;
-            border-top: 1px solid rgba(255,255,255,0.08);
+            border-top: 1px solid var(--line);
             color: var(--text-dim);
             font-size: 0.85rem;
             display: flex;
@@ -406,12 +404,12 @@
             gap: 16px;
         }
         footer a { color: var(--text-muted); text-decoration: none; margin-right: 18px; transition: color 0.2s; }
-        footer a:hover { color: var(--text); }
+        footer a:hover { color: var(--ink); }
         footer .copy { color: var(--text-dim); }
 
         @media (max-width: 640px) {
             .nav-links a:not(.nav-cta) { display: none; }
-            .hero { padding-top: 50px; }
+            .hero { padding-top: 48px; }
             .store-btn { min-width: auto; flex: 1; }
         }
 
@@ -425,7 +423,7 @@
     <nav class="top">
         <div class="nav-inner">
             <a class="brand" href="/">
-                <img src="assets/t_sty.jpg" alt="T_STY logo" class="brand-logo">
+                <img src="assets/t_sty.jpg" alt="T_STY logo">
                 <span>T_STY <small>· Beyond</small></span>
             </a>
             <div class="nav-links">
@@ -466,47 +464,12 @@
 
     <section class="showcase">
         <div class="phone">
+            <div class="phone-notch"></div>
             <div class="phone-screen">
-                <p class="phone-logo">T_STY · Beyond</p>
-                <div class="phone-card">
-                    <div class="row">
-                        <div class="thumb"></div>
-                        <div class="meta">
-                            <p class="title">Plátano Tabasco</p>
-                            <p class="sub">1 kg</p>
-                        </div>
-                        <span class="price">$28</span>
-                    </div>
-                </div>
-                <div class="phone-card">
-                    <div class="row">
-                        <div class="thumb v2"></div>
-                        <div class="meta">
-                            <p class="title">Pan artesanal</p>
-                            <p class="sub">Recién horneado</p>
-                        </div>
-                        <span class="price">$45</span>
-                    </div>
-                </div>
-                <div class="phone-card">
-                    <div class="row">
-                        <div class="thumb v3"></div>
-                        <div class="meta">
-                            <p class="title">Leche entera</p>
-                            <p class="sub">1 L</p>
-                        </div>
-                        <span class="price">$32</span>
-                    </div>
-                </div>
-                <div class="phone-card">
-                    <div class="row">
-                        <div class="thumb v4"></div>
-                        <div class="meta">
-                            <p class="title">Aguacate Hass</p>
-                            <p class="sub">500 g</p>
-                        </div>
-                        <span class="price">$52</span>
-                    </div>
+                <img src="assets/app_screenshot1.png" alt="Captura de la app T_STY: Beyond"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+                <div class="phone-fallback" style="display:none;">
+                    Agrega <code>web/assets/app_screenshot1.png</code> para mostrar tu captura aquí.
                 </div>
             </div>
         </div>
