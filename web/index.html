@@ -261,7 +261,7 @@
         }
         .hero-meta .stars { color: #f59e0b; letter-spacing: 1px; }
 
-        /* Phone mock with real screenshot */
+        /* Phone mock — Samsung Galaxy S25 Ultra */
         .showcase {
             max-width: 1080px;
             margin: 32px auto 0;
@@ -273,12 +273,12 @@
             flex-wrap: wrap;
         }
         .phone {
-            width: min(280px, 68vw);
-            aspect-ratio: 9 / 19.5;
-            border-radius: 44px;
-            padding: 8px;
-            background: linear-gradient(160deg, #1a1a22 0%, #0a0a0f 60%, #1a1a22 100%);
-            border: 1px solid rgba(10,10,15,0.2);
+            width: min(270px, 68vw);
+            aspect-ratio: 9 / 20;
+            border-radius: 26px;
+            padding: 5px;
+            background: linear-gradient(160deg, #3a3a40 0%, #1b1b1f 45%, #2e2e33 100%);
+            border: 1px solid rgba(10,10,15,0.25);
             box-shadow: var(--shadow-phone);
             position: relative;
             transition: transform 0.6s cubic-bezier(.2,.9,.25,1);
@@ -287,20 +287,30 @@
         .phone-right { transform: rotate(4deg); }
         .phone-left:hover,
         .phone-right:hover { transform: rotate(0deg) translateY(-4px); }
+        /* Right-side buttons: volume rocker + power */
         .phone::before {
-            /* side button silver accent */
             content: "";
             position: absolute;
-            top: 110px;
+            top: 120px;
             right: -2px;
-            width: 4px;
-            height: 60px;
-            background: linear-gradient(180deg, #3a3a45, #2a2a32);
+            width: 3px;
+            height: 88px;
+            background: linear-gradient(180deg, #4a4a52, #2a2a30);
+            border-radius: 2px 0 0 2px;
+        }
+        .phone::after {
+            content: "";
+            position: absolute;
+            top: 220px;
+            right: -2px;
+            width: 3px;
+            height: 48px;
+            background: linear-gradient(180deg, #4a4a52, #2a2a30);
             border-radius: 2px 0 0 2px;
         }
         .phone-screen {
             width: 100%; height: 100%;
-            border-radius: 36px;
+            border-radius: 22px;
             overflow: hidden;
             position: relative;
             background: #ffffff;
@@ -312,16 +322,18 @@
             object-fit: cover;
             display: block;
         }
+        /* Centered punch-hole camera */
         .phone-notch {
             position: absolute;
-            top: 12px;
+            top: 10px;
             left: 50%;
             transform: translateX(-50%);
-            width: 100px;
-            height: 26px;
-            background: #0a0a0f;
-            border-radius: 16px;
+            width: 10px;
+            height: 10px;
+            background: #000;
+            border-radius: 50%;
             z-index: 2;
+            box-shadow: 0 0 0 1px rgba(255,255,255,0.05);
         }
         /* Fallback visible if screenshot missing */
         .phone-fallback {
