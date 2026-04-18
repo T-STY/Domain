@@ -42,6 +42,21 @@
 
         * { box-sizing: border-box; }
         html, body { height: 100%; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            animation: page-in 0.45s cubic-bezier(.2,.9,.25,1) both;
+        }
+        body.page-leaving {
+            animation: page-out 0.3s cubic-bezier(.4,0,.6,1) forwards;
+        }
+        @keyframes page-in {
+            from { opacity: 0; transform: translateY(10px); filter: blur(6px); }
+            to   { opacity: 1; transform: translateY(0);    filter: blur(0); }
+        }
+        @keyframes page-out {
+            to { opacity: 0; transform: translateY(-6px); filter: blur(4px); }
+        }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -434,6 +449,32 @@
         confirmBox.addEventListener('change', () => {
             submitBtn.disabled = !confirmBox.checked;
         });
+
+        (function() {
+            const internal = (href) => {
+                if (!href) return false;
+                if (href.startsWith('#')) return false;
+                try {
+                    const u = new URL(href, window.location.origin);
+                    return u.origin === window.location.origin;
+                } catch { return false; }
+            };
+            document.querySelectorAll('a[href]').forEach(a => {
+                if (a.target === '_blank') return;
+                if (!internal(a.getAttribute('href'))) return;
+                a.addEventListener('click', (e) => {
+                    if (e.metaKey || e.ctrlKey || e.shiftKey || e.button === 1) return;
+                    const href = a.href;
+                    if (href === window.location.href) return;
+                    e.preventDefault();
+                    document.body.classList.add('page-leaving');
+                    setTimeout(() => { window.location.href = href; }, 280);
+                });
+            });
+            window.addEventListener('pageshow', (e) => {
+                if (e.persisted) document.body.classList.remove('page-leaving');
+            });
+        })();
     </script>
 
 </body>
